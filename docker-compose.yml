@@ -4,18 +4,14 @@ services:
     build: .
     ports: ["8000:8000"]
     env_file: [.env]
+    environment:
+      CRA_DATABASE_URL: postgresql://cra:cra_dev_only@db:5432/cra
     volumes:
       - ./traces:/app/traces
-    depends_on: [qdrant, postgres]
+    depends_on: [db]
 
-  qdrant:
-    image: qdrant/qdrant:latest
-    ports: ["6333:6333"]
-    volumes:
-      - ./qdrant_storage:/qdrant/storage
-
-  postgres:
-    image: postgres:16
+  db:
+    image: pgvector/pgvector:pg16
     environment:
       POSTGRES_USER: cra
       POSTGRES_PASSWORD: cra_dev_only

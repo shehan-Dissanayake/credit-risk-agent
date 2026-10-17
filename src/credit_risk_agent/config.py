@@ -26,6 +26,7 @@ class Settings(BaseSettings):
 
     # Secrets (never logged, never committed)
     anthropic_api_key: SecretStr | None = None
+    database_url: SecretStr | None = None
 
 
 @lru_cache
