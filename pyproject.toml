@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "credit-risk-agent"
+version = "0.1.0"
+description = "Autonomous credit risk investigation agent with production-grade RAG, verification and audit trail"
+readme = "README.md"
+requires-python = ">=3.11"
+# Runtime deps are added phase by phase (see docs/phase-checklist.md) so every
+# dependency has a reason and a decision-log entry.
+dependencies = [
+  "fastapi>=0.110",
+  "uvicorn[standard]>=0.29",
+  "pydantic>=2.6",
+  "pydantic-settings>=2.2",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "httpx>=0.27",
+  "ruff>=0.4",
+  "mypy>=1.10",
+  "pre-commit>=3.7",
+]
+
+[project.scripts]
+cra = "credit_risk_agent.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/credit_risk_agent"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
