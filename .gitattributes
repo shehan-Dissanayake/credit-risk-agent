@@ -1,0 +1,33 @@
+* text=auto eol=lf
+
+*.py text eol=lf
+*.sql text eol=lf
+Dockerfile text eol=lf
+docker-compose.yml text eol=lf
+.env.example text eol=lf
+pyproject.toml text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+
+*.7z -text
+*.bin -text
+*.bmp -text
+*.dll -text
+*.dylib -text
+*.exe -text
+*.gif -text
+*.gz -text
+*.ico -text
+*.jpeg -text
+*.jpg -text
+*.pdf -text
+*.png -text
+*.so -text
+*.tar -text
+*.tif -text
+*.tiff -text
+*.woff -text
+*.woff2 -text
+*.zip -text
