@@ -17,6 +17,8 @@ class Settings(BaseSettings):
     environment: str = "dev"
     log_level: str = "INFO"
     trace_dir: Path = Path("traces")
+    embedding_model: str = "bge-m3"
+    embedding_dim: int = 1024
 
     # Agent budgets (hard limits)
     max_steps: int = 12

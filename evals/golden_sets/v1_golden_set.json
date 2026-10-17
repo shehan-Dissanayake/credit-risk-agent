@@ -1,0 +1,74 @@
+{
+  "dataset_id": "credit-risk-rag-v1",
+  "version": 1,
+  "synthetic": true,
+  "description": "Boilerplate benchmark set. Citation locators and excerpts are illustrative; replace them with corpus-backed labels before scoring.",
+  "cases": [
+    {
+      "case_id": "v1-001",
+      "question": "What drove the borrower's operating cash flow decline in FY2024?",
+      "target_ground_truth_citations": [
+        {
+          "document_id": "sample-borrower-001-fy2024-filing",
+          "source": "sample-borrower-001-fy2024-filing.pdf",
+          "page": 32,
+          "section": "Management Discussion and Analysis",
+          "excerpt": "Operating cash flow declined as accounts receivable and inventory balances increased."
+        }
+      ],
+      "expected_risk_signals": [
+        "operating_cash_flow_decline",
+        "working_capital_deterioration"
+      ],
+      "metadata_filters": {
+        "company_id": "sample-borrower-001",
+        "doc_type": "filing",
+        "as_of_date": "2024-12-31"
+      }
+    },
+    {
+      "case_id": "v1-002",
+      "question": "Can the borrower cover its near-term obligations with available liquidity as of March 31, 2025?",
+      "target_ground_truth_citations": [
+        {
+          "document_id": "sample-borrower-002-2025q1-filing",
+          "source": "sample-borrower-002-2025q1-filing.pdf",
+          "page": 18,
+          "section": "Liquidity and Capital Resources",
+          "excerpt": "Cash and equivalents totaled 12.4 million while current liabilities were 28.0 million."
+        }
+      ],
+      "expected_risk_signals": [
+        "short_term_liquidity_pressure",
+        "current_liabilities_exceed_cash"
+      ],
+      "metadata_filters": {
+        "company_id": "sample-borrower-002",
+        "doc_type": "filing",
+        "as_of_date": "2025-03-31"
+      }
+    },
+    {
+      "case_id": "v1-003",
+      "question": "How did the borrower's leverage change in FY2024, and what contributed to the change?",
+      "target_ground_truth_citations": [
+        {
+          "document_id": "sample-borrower-003-fy2024-filing",
+          "source": "sample-borrower-003-fy2024-filing.pdf",
+          "page": 41,
+          "section": "Debt and Financing Activities",
+          "excerpt": "Total debt increased following borrowings used to finance the acquisition of a regional competitor."
+        }
+      ],
+      "expected_risk_signals": [
+        "rising_leverage",
+        "acquisition_funded_by_debt"
+      ],
+      "metadata_filters": {
+        "company_id": "sample-borrower-003",
+        "doc_type": "filing",
+        "as_of_date": "2024-12-31"
+      }
+    }
+  ]
+}
