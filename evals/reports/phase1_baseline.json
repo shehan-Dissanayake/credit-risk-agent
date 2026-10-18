@@ -1,0 +1,49 @@
+{
+  "dataset_id": "credit-risk-rag-v1",
+  "dataset_version": 1,
+  "synthetic": true,
+  "description": "Boilerplate benchmark set. Citation locators and excerpts are illustrative; replace them with corpus-backed labels before scoring.",
+  "retrieval": "dense cosine similarity, unique documents ranked by closest chunk",
+  "embedding_model": "BAAI/bge-m3",
+  "embedding_dim": 1024,
+  "k": 5,
+  "candidate_count": 100,
+  "case_count": 3,
+  "summary": {
+    "precision_at_k": 0.0,
+    "recall_at_k": 0.0,
+    "mean_reciprocal_rank": 0.0
+  },
+  "cases": [
+    {
+      "case_id": "v1-001",
+      "question": "What drove the borrower's operating cash flow decline in FY2024?",
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "reciprocal_rank": 0.0,
+      "relevant_count": 1,
+      "relevant_retrieved": 0,
+      "retrieved": []
+    },
+    {
+      "case_id": "v1-002",
+      "question": "Can the borrower cover its near-term obligations with available liquidity as of March 31, 2025?",
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "reciprocal_rank": 0.0,
+      "relevant_count": 1,
+      "relevant_retrieved": 0,
+      "retrieved": []
+    },
+    {
+      "case_id": "v1-003",
+      "question": "How did the borrower's leverage change in FY2024, and what contributed to the change?",
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "reciprocal_rank": 0.0,
+      "relevant_count": 1,
+      "relevant_retrieved": 0,
+      "retrieved": []
+    }
+  ]
+}

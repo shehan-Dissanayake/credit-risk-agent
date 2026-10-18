@@ -6,7 +6,7 @@ from credit_risk_agent.config import Settings, get_settings
 def test_defaults_are_safe() -> None:
     settings = Settings(_env_file=None)  # type: ignore[call-arg]
     assert settings.max_steps == 12
-    assert settings.embedding_model == "bge-m3"
+    assert settings.embedding_model == "BAAI/bge-m3"
     assert settings.embedding_dim == 1024
     assert settings.anthropic_api_key is None
 

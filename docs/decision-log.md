@@ -19,6 +19,11 @@ One entry per significant choice: date, decision, options considered, evidence, 
 - Trade-offs: Postgres full-text ranking is not classic BM25, and HNSW with metadata filters can return fewer candidates than requested. Both are measured in the Phase 2 ablation; revisit if lexical recall is weak.
 - Security: RLS enabled on all tables with no policies; backend uses a privileged connection; secrets only in `.env`.
 
+## ADR-0005: Sentence Transformers for local embeddings
+- Decision: use the configured `CRA_EMBEDDING_MODEL` through Sentence Transformers, truncating output to `CRA_EMBEDDING_DIM` (1024 by default).
+- Rationale: supports the default `BAAI/bge-m3` model without adding a hosted embedding API or another credential requirement; loading stays lazy until indexing is requested.
+- Trade-off: the selected model must be available through Sentence Transformers, and first use may download model weights.
+
 ## To decide (fill with evidence during the build)
 - Chunk size and strategy
 - Embedding model

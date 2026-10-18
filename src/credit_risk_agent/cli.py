@@ -5,6 +5,7 @@ from pathlib import Path
 
 from credit_risk_agent.config import get_settings
 from credit_risk_agent.db import check_database
+from credit_risk_agent.ingestion.indexer import index_file
 from credit_risk_agent.migrate import apply_migrations
 from credit_risk_agent.observability.tracing import Tracer
 
@@ -23,6 +24,8 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("hello-trace", help="Write a sample trace file to verify the setup")
     sub.add_parser("db-check", help="Check database connection and pgvector")
     sub.add_parser("migrate", help="Apply pending SQL migrations from ./migrations")
+    index_parser = sub.add_parser("index", help="Parse and index a Markdown/text document")
+    index_parser.add_argument("--file", type=Path, required=True, help="Source document path")
     args = parser.parse_args(argv)
 
     if args.command == "hello-trace":
@@ -33,4 +36,13 @@ def main(argv: list[str] | None = None) -> int:
     elif args.command == "migrate":
         applied = apply_migrations()
         print("Applied: " + ", ".join(applied) if applied else "Nothing to apply.")
+    elif args.command == "index":
+        result = index_file(args.file)
+        if result.inserted:
+            print(
+                f"Indexed document {result.document_id}: {result.parent_chunks} parent chunks, "
+                f"{result.child_chunks} child chunks."
+            )
+        else:
+            print(f"Skipped existing document {result.document_id} (matching content hash).")
     return 0
